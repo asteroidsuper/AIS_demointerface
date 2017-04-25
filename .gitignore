@@ -1,0 +1,7 @@
+*.db
+*.opendb
+ipch
+libs
+x64
+*/GeneratedFiles
+*/x64

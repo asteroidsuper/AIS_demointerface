@@ -1,0 +1,85 @@
+﻿{
+  "variants": [
+    {
+      "title": "Погода",
+      "asserts": [
+        {
+          "text": "Тёплая",
+          "assert": "(weather is hot)"
+        },
+        {
+          "text": "Холодная",
+          "assert": "(weather is cold)"
+        }
+      ]
+    },
+    {
+      "title": "Рабочий день?",
+      "asserts": [
+        {
+          "text": "Рабочий",
+          "assert": "(day is on)"
+        },
+        {
+          "text": "Не рабочий",
+          "assert": "(day is off)"
+        }
+      ]
+    },
+    {
+      "title": "Время суток",
+      "asserts": [
+        {
+          "text": "Утро",
+          "assert": "(time is morning)"
+        },
+        {
+          "text": "День",
+          "assert": "(time is day)"
+        },
+        {
+          "text": "Вечер",
+          "assert": "(time is evening)"
+        },
+        {
+          "text": "Ночь",
+          "assert": "(time is night)"
+        }
+      ]
+    },
+    {
+      "title": "В наличии ли растительность",
+      "asserts": [
+        {
+          "text": "Растёт",
+          "assert": "(veg is vegeance)"
+        },
+        {
+          "text": "Не растёт",
+          "assert": "(veg is novegeance)"
+        }
+      ]
+    }
+  ],
+
+  "translations": [
+    {
+      "symbol": "higher",
+      "description": "Система предсказывает очень высокий уровень потребления воды"
+    },
+    {
+      "symbol": "high",
+      "description": "Система предсказывает высокий уровень потребления воды"
+    },
+    {
+      "symbol": "medium",
+      "description": "Система предсказывает средний уровень потребления воды"
+    },
+    {
+      "symbol": "low",
+      "description": "Система предсказывает низкий уровень потребления воды"
+    }
+  ],
+
+"error_message" : "Не удалось разпознать ответ"
+}
