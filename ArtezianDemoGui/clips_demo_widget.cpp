@@ -1,6 +1,7 @@
 ﻿#include "clips_demo_widget.hpp"
 
 #include "variants_widget.hpp"
+#include "artesian_result_view.hpp"
 
 #include <data_object.h>
 #include <env.h>
@@ -16,6 +17,8 @@
 #include <QFile>
 
 #include <QMessageBox>
+
+#include "tank_widget.hpp"
 
 namespace {
 	Json::Value parseFile(const QString& fileName)
@@ -78,6 +81,7 @@ private:
 	QVBoxLayout* _layout;
 
 	QMap<QString, QString> _translations;
+	QMap<QString, int> _debitTrans;
 	QString _translationUnknowText;
 
 public:
@@ -89,6 +93,7 @@ public:
 		initTitle();
 		loadRequired();
 		loadExpertCode();
+		loadDebitTrans();
 		parseInitFile();
 		initShowAnswerButton();
 	}
@@ -122,6 +127,18 @@ private:
 	{
 		_env->loadFromString(u8"(defglobal ?*result* = nothing)"
 			"(deffunction set_result(?arg) (bind ?*result* ?arg))");
+	}
+
+	void loadDebitTrans()
+	{
+		auto debitTrans = parseFile(u8"debit_trans.json");
+
+		for (auto& d : debitTrans)
+		{
+			auto symbol = QString::fromStdString(d["symbol"].asString());
+
+			_debitTrans[symbol] = d["debit"].asInt();
+		}
 	}
 
 	void parseInitFile()
@@ -165,6 +182,8 @@ private:
 			showSystemAnswer();
 		});
 
+		_layout->addWidget(new TankWidget());
+
 		_layout->addWidget(pushButton, 0, Qt::AlignHCenter);
 	}
 
@@ -193,9 +212,11 @@ private:
 
 		auto answer = _env->eval(u8"?*result*").string();
 
-		auto output = translate(answer);
+		ArtesianResultView view(_debitTrans[answer]);
 
-		QMessageBox::information(nullptr, u8"Решение системы", output);
+		view.setWindowTitle(translate(answer));
+
+		view.exec();
 	}
 };
 
