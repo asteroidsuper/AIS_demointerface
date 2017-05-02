@@ -6,6 +6,7 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QRadioButton>
+#include <QPainter>
 
 namespace {
 	struct AssertVariant
@@ -15,22 +16,44 @@ namespace {
 	};
 }
 
-class VariantsWidget::Impl
+class VariantsWidget::Impl : public QObject
 {
 private:
 	VariantsWidget* _parent;
-	shared_ptr<qclips::Env> _env;
+	std::shared_ptr<qclips::Env> _env;
 
 	QVector<AssertVariant> _assertVariants;
 
 	QVBoxLayout* _layout;
 public:
-	Impl(VariantsWidget* parent, shared_ptr<qclips::Env>& env, const QString& title) 
+	Impl(VariantsWidget* parent, std::shared_ptr<qclips::Env>& env, const QString& title) 
 		: _parent(parent),
 		  _env(env)
 	{
 		initLayout();
 		initTitle(title);
+
+		_parent->setFrameShape(QFrame::Box);
+		_parent->setFrameShadow(QFrame::Sunken);
+		_parent->setMidLineWidth(1);
+
+		auto palette = _parent->palette();
+
+		auto backgroundColor = palette.color(QPalette::Background);
+
+		qreal hue, sat, lum;
+
+		backgroundColor.getHslF(&hue, &sat, &lum);
+
+		sat += 0.15;
+
+		backgroundColor.setHslF(hue, sat, lum);
+
+		palette.setColor(QPalette::Background, backgroundColor);
+
+		_parent->setPalette(palette);
+
+		_parent->setAutoFillBackground(true);
 	}
 
 	~Impl() { }
@@ -43,6 +66,12 @@ public:
 
 		var.button = new QRadioButton(text);
 
+		auto font = var.button->font();
+
+		font.setPointSize(10);
+
+		var.button->setFont(font);
+
 		if (_assertVariants.isEmpty())
 		{
 			var.button->setChecked(true);
@@ -51,6 +80,8 @@ public:
 		_assertVariants << var;
 
 		_layout->addWidget(var.button);
+
+		connectRadio(var.button);
 	}
 
 	void assert()
@@ -64,6 +95,22 @@ public:
 				return;
 			}
 		}
+	}
+
+	void paintEvent()
+	{
+		QPainterPath path;
+		{
+			QRect frame = _parent->rect();
+
+			frame.setTopLeft(QPoint());
+
+			path.addRoundRect(frame, 15, 30);
+		}
+		
+		QPainter painter(_parent);
+
+		painter.fillPath(path, Qt::white);
 	}
 
 private:
@@ -89,9 +136,19 @@ private:
 		_layout->addWidget(titleLabel, 0, Qt::AlignHCenter);
 	}
 
+	void connectRadio(QRadioButton* button)
+	{
+		connect(button, &QRadioButton::toggled, this, &Impl::assertChanged);
+	}
+
+	Q_SLOT void assertChanged()
+	{
+		emit _parent->assertChanged();
+	}
+
 };
 
-VariantsWidget::VariantsWidget(const QString& title, shared_ptr<qclips::Env>& env, QWidget * parent)
+VariantsWidget::VariantsWidget(const QString& title, std::shared_ptr<qclips::Env>& env, QWidget * parent)
 	: QFrame(parent),
 	  _impl(new Impl(this, env, title))
 { }
@@ -106,4 +163,9 @@ void VariantsWidget::addAssertVariant(const QString & text, const QString & asse
 void VariantsWidget::assert()
 {
 	_impl->assert();
+}
+
+void VariantsWidget::paintEvent(QPaintEvent *event)
+{
+	QFrame::paintEvent(event);
 }

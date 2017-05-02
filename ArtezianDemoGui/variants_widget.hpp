@@ -12,14 +12,19 @@ class VariantsWidget : public QFrame
 	Q_OBJECT
 
 public:
-	VariantsWidget(const QString& title, shared_ptr<qclips::Env>& env, QWidget * parent = nullptr);
+	VariantsWidget(const QString& title, std::shared_ptr<qclips::Env>& env, QWidget * parent = nullptr);
 	~VariantsWidget();
 
 	void addAssertVariant(const QString& text, const QString& assert);
 
 	void assert();
 
+	Q_SIGNAL void assertChanged();
+
+protected:
+	virtual void paintEvent(QPaintEvent *event) override;
+
 private:
 	class Impl;
-	unique_ptr<Impl> _impl;
+	std::unique_ptr<Impl> _impl;
 };

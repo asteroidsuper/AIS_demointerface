@@ -13,8 +13,8 @@ int main(int argc, char *argv[])
 		w.show();
 		return a.exec();
 	}
-	catch(const runtime_error& exp)
+	catch(const std::runtime_error& exp)
 	{
-		QMessageBox::critical(nullptr, u8"Ошибка при инициализации", exp.what());
+		QMessageBox::critical(nullptr, u8"Ошибка при инициализации: ", exp.what());
 	}
 }

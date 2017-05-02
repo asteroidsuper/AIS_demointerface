@@ -1,6 +1,6 @@
 #include "main_window.h"
 
-#include "clips_demo_widget.hpp"
+#include "main_widget.hpp"
 
 class MainWindow::Impl
 {
@@ -10,7 +10,7 @@ private:
 public:
 	Impl(MainWindow* parent) : _parent(parent)
 	{
-		_parent->setCentralWidget(new ClipsDemoWidget());
+		_parent->setCentralWidget(new MainWidget());
 	}
 
 	~Impl() { }

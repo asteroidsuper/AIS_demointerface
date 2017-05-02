@@ -21,5 +21,5 @@ public:
 
 private:
 	class Impl;
-	unique_ptr<Impl> _impl;
+	std::unique_ptr<Impl> _impl;
 };

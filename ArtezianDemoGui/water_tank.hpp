@@ -1,14 +1,14 @@
 ﻿#pragma once
 #include <QObject>
 
-class Tank : public QObject
+class WaterTank : public QObject
 {
 	Q_OBJECT
 
 public:
-	~Tank();
+	~WaterTank();
 
-	static Tank& instance();
+	static WaterTank& instance();
 
 	void setMaxCapacity(unsigned long long capacity);
 	unsigned long long maxCapacity() const;
@@ -21,7 +21,7 @@ public:
 
 private:
 	class Impl;
-	unique_ptr<Impl> _impl;
+	std::unique_ptr<Impl> _impl;
 
-	Tank(QObject * parent = nullptr);
+	WaterTank(QObject * parent = nullptr);
 };

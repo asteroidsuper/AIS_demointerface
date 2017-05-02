@@ -14,14 +14,14 @@
       ]
     },
     {
-      "title": "Рабочий день?",
+      "title": "Тип дня",
       "asserts": [
         {
           "text": "Рабочий",
           "assert": "(day is on)"
         },
         {
-          "text": "Не рабочий",
+          "text": "Выходной",
           "assert": "(day is off)"
         }
       ]
@@ -48,14 +48,14 @@
       ]
     },
     {
-      "title": "В наличии ли растительность",
+      "title": "Сезон",
       "asserts": [
         {
-          "text": "Растёт",
+          "text": "Растительный",
           "assert": "(veg is vegeance)"
         },
         {
-          "text": "Не растёт",
+          "text": "Не растительный",
           "assert": "(veg is novegeance)"
         }
       ]

@@ -47,7 +47,7 @@ public:
 
 		auto wells = _wells;
 
-		sort(wells.begin(), wells.end());
+		std::sort(wells.begin(), wells.end());
 
 		QVector<ArtesianPair> result;
 
@@ -100,7 +100,7 @@ private:
 
 			if (Json::Reader().parse(docData.data() + BOMSize, docData.data() + docData.size(), root) == false)
 			{
-				throw runtime_error("parse error (artesian wells)");
+				throw std::runtime_error("parse error (artesian wells)");
 			}
 		}
 

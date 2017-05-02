@@ -32,7 +32,7 @@
 (weather is cold) (day is on) (time is day)=> (set_result low))
 
 (defrule r12 "" 
-(weather is cold) (day is on) (time is evening)=> (set_result high))
+(day is on) (time is evening)=> (set_result high))
 
 (defrule r13 "" 
 (weather is cold) (day is on) (time is evening)=> (set_result medium))

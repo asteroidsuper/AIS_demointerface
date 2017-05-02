@@ -1,6 +1,6 @@
 ﻿#include "tank_widget.hpp"
 
-#include "tank.hpp"
+#include "water_tank.hpp"
 
 #include <QStyleOption>
 #include <QPainter>
@@ -85,7 +85,7 @@ private:
 
 	void grabTankValues()
 	{
-		auto& tank = Tank::instance();
+		auto& tank = WaterTank::instance();
 
 		auto v = tank.waterCount();
 
@@ -100,14 +100,14 @@ private:
 
 	void connectTank()
 	{
-		auto& tank = Tank::instance();
-		connect(&tank, &Tank::waterCountChanged, this, &Impl::tankChanged, Qt::QueuedConnection);
-		connect(&tank, &Tank::maxCapacityChanged, this, &Impl::tankChanged, Qt::QueuedConnection);
+		auto& tank = WaterTank::instance();
+		connect(&tank, &WaterTank::waterCountChanged, this, &Impl::tankChanged, Qt::QueuedConnection);
+		connect(&tank, &WaterTank::maxCapacityChanged, this, &Impl::tankChanged, Qt::QueuedConnection);
 	}
 
 	Q_SLOT void sliderValueChanged()
 	{
-		auto& tank = Tank::instance();
+		auto& tank = WaterTank::instance();
 
 		auto vl = _parent->value();
 
