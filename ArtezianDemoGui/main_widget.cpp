@@ -3,6 +3,8 @@
 #include "assert_panel.hpp"
 #include "result_panel.hpp"
 
+#include "external_files.h"
+
 #include <env.h>
 #include <data_object.h>
 
@@ -31,7 +33,7 @@ public :
 		_env->loadFromString(u8"(defglobal ?*result* = nothing)"
 			"(deffunction set_result(?arg) (bind ?*result* ?arg))");
 
-		_env->load(u8"expert_code.clp");
+		_env->load(external_files::clipsCodeFilePath());
 
 		connect(_assertPanel, &AssertPanel::assertChanged, this, &Impl::refresh);
 

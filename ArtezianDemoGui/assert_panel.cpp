@@ -1,6 +1,7 @@
 ﻿#include "assert_panel.hpp"
 
 #include "variants_widget.hpp"
+#include "external_files.h"
 
 #include <env.h>
 
@@ -86,7 +87,7 @@ private:
 
 	void initAsserts()
 	{
-		auto json = helpers::parseFile(u8"init_file.json");
+		auto json = helpers::parseFile(external_files::guiInitFilePath());
 
 		for (auto& var : json[u8"variants"])
 		{

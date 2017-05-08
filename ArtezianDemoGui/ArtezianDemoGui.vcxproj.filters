@@ -58,15 +58,6 @@
     <ClCompile Include="artesian_well_counter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tank_widget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_tank_widget.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_tank_widget.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="assert_panel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -74,15 +65,6 @@
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_assert_panel.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="water_tank.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_water_tank.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_water_tank.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="main_widget.cpp">
@@ -103,6 +85,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_result_panel.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="external_files.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="main_window.h">
@@ -111,13 +96,7 @@
     <CustomBuild Include="variants_widget.hpp">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="tank_widget.hpp">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="assert_panel.hpp">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="water_tank.hpp">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="main_widget.hpp">
@@ -132,6 +111,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="artesian_well_counter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="external_files.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,5 +1,7 @@
 #include "artesian_well_counter.h"
 
+#include "external_files.h"
+
 #include <QByteArray>
 #include <QFile>
 
@@ -33,7 +35,7 @@ private:
 public:
 	Impl()
 	{
-		loadFromJson(u8"wells.json");
+		loadFromJson(external_files::ableWells());
 	}
 
 	~Impl()	{ }

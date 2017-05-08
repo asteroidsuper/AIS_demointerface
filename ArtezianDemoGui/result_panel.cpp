@@ -1,6 +1,7 @@
 ﻿#include "result_panel.hpp"
 
 #include "artesian_well_counter.h"
+#include "external_files.h"
 
 #include <json/value.h>
 
@@ -157,7 +158,7 @@ private:
 
 	void loadDebitsTrans()
 	{
-		auto json = helpers::parseFile(u8"debit_trans.json");
+		auto json = helpers::parseFile(external_files::debitTranslations());
 
 		for (auto& d : json)
 		{
@@ -169,7 +170,7 @@ private:
 
 	void loadTranslation()
 	{
-		auto json = helpers::parseFile(u8"init_file.json");
+		auto json = helpers::parseFile(external_files::guiInitFilePath());
 
 		for (auto& var : json["translations"])
 		{

@@ -10,7 +10,7 @@ namespace qclips
 class VariantsWidget : public QFrame
 {
 	Q_OBJECT
-
+	Q_DISABLE_COPY(VariantsWidget)
 public:
 	VariantsWidget(const QString& title, std::shared_ptr<qclips::Env>& env, QWidget * parent = nullptr);
 	~VariantsWidget();

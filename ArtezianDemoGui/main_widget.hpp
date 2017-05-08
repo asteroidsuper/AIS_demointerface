@@ -1,14 +1,13 @@
 ﻿#pragma once
 #include <QWidget>
 
-class MainWidget : public QWidget {
+class MainWidget : public QWidget
+{
 	Q_OBJECT
-
+	Q_DISABLE_COPY(MainWidget)
 public:
 	MainWidget(QWidget * parent = nullptr);
 	~MainWidget();
-
-	NO_COPYABLE(MainWidget)
 
 private:
 	class Impl;

@@ -9,7 +9,7 @@ namespace qclips
 class AssertPanel : public QWidget
 {
 	Q_OBJECT
-
+	Q_DISABLE_COPY(AssertPanel)
 public:
 	AssertPanel(std::shared_ptr<qclips::Env>& env, QWidget * parent = nullptr);
 	~AssertPanel();
