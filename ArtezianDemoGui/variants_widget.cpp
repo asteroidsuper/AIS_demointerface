@@ -25,6 +25,7 @@ private:
 	QVector<AssertVariant> _assertVariants;
 
 	QVBoxLayout* _layout;
+
 public:
 	Impl(VariantsWidget* parent, std::shared_ptr<qclips::Env>& env, const QString& title) 
 		: _parent(parent),
@@ -58,7 +59,7 @@ public:
 
 	~Impl() { }
 
-	void addAssertVariant(const QString& text, const QString& assert)
+	void addAssertVariant(const QString& text, const QString& assert, const QString& toolTip)
 	{
 		AssertVariant var;
 
@@ -75,6 +76,11 @@ public:
 		if (_assertVariants.isEmpty())
 		{
 			var.button->setChecked(true);
+		}
+
+		if (toolTip != nullptr)
+		{
+			var.button->setToolTip(toolTip);
 		}
 
 		_assertVariants << var;
@@ -155,9 +161,9 @@ VariantsWidget::VariantsWidget(const QString& title, std::shared_ptr<qclips::Env
 
 VariantsWidget::~VariantsWidget() { }
 
-void VariantsWidget::addAssertVariant(const QString & text, const QString & assert)
+void VariantsWidget::addAssertVariant(const QString & text, const QString & assert, const QString& toolTip)
 {
-	_impl->addAssertVariant(text, assert);
+	_impl->addAssertVariant(text, assert, toolTip);
 }
 
 void VariantsWidget::assert()

@@ -15,7 +15,7 @@ public:
 	VariantsWidget(const QString& title, std::shared_ptr<qclips::Env>& env, QWidget * parent = nullptr);
 	~VariantsWidget();
 
-	void addAssertVariant(const QString& text, const QString& assert);
+	void addAssertVariant(const QString& text, const QString& assert, const QString& toolTip);
 
 	void assert();
 

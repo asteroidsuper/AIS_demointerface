@@ -27,9 +27,14 @@ namespace {
 		{
 			auto text = QString::fromStdString(assert["text"].asString());
 			auto assertText = QString::fromStdString(assert["assert"].asString());
+			auto toolTip = QString::fromStdString(assert["tool_tip"].asString());
 
-			result->addAssertVariant(text, assertText);
+			result->addAssertVariant(text, assertText, toolTip);
 		}
+
+		auto toolTip = QString::fromStdString(desc["tool_tip"].asString());
+
+		result->setToolTip(toolTip);
 
 		return result;
 	}
